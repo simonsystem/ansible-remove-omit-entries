@@ -27,7 +27,7 @@ def remove_omit_entries(thing, omit_marker=OMIT_MARKER):
         cleaned = {}
         for key, value in thing.items():
             if isinstance(value, list) or isinstance(value, dict):
-                cleaned[key] = remove_omit_entries(value)
+                cleaned[key] = remove_omit_entries(value, omit_marker)
             elif value != omit_marker:
                 cleaned[key] = value
         return cleaned
@@ -35,7 +35,7 @@ def remove_omit_entries(thing, omit_marker=OMIT_MARKER):
         cleaned = []
         for item in thing:
             if item != omit_marker:
-                cleaned.append(remove_omit_entries(item))
+                cleaned.append(remove_omit_entries(item, omit_marker))
         return cleaned
     else:
         return thing
